@@ -11,8 +11,5 @@ pdf:
 epub:
 	npx honkit epub . byte-of-python.epub
 
-gitbook:
-	npx honkit build ./ ./_gitbook
-
 serve:
 	npx honkit serve
