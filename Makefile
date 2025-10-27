@@ -6,10 +6,10 @@ build:
 	npx honkit build . public --log=debug
 
 pdf:
-	npx honkit pdf . byte-of-python.pdf
+	npx honkit pdf . xv6-riscv-expanded-edition.pdf
 
 epub:
-	npx honkit epub . byte-of-python.epub
+	npx honkit epub . xv6-riscv-expanded-edition.epub
 
 serve:
 	npx honkit serve
