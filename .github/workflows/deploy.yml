@@ -1,8 +1,6 @@
 name: Build and Deploy Book
 
-on:
-  push:
-    branch: [master]
+on: [push]
 
 jobs:
   build:
