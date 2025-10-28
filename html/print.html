@@ -1,0 +1,276 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>xv6: a simple, Unix-like teaching operating system</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">xv6: a simple, Unix-like teaching operating system</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="preface"><a class="header" href="#preface">Preface</a></h1>
+<p>At MIT, there is an excellent course on operating systems that I'd like to share with you. Its approach combines theory and practice in a remarkably effective way.</p>
+<ul>
+<li>The <strong>practical part</strong> is built around <em>xv6</em>, an educational operating system written in C that implements all the core concepts of modern OS design. In many ways, it resembles early versions of Linux.</li>
+<li>The <strong>theoretical part</strong> is covered in a detailed guide to operating systems in general and <em>xv6</em> in particular.</li>
+</ul>
+<p>Both the code and the guide are freely available under one of the most permissive licenses — the MIT License. On the one hand, this makes it an outstanding resource for self-study; on the other, the learning curve is quite steep because the guide doesn't explain how to build, run, or debug the OS. That's understandable — the text was created as lecture material for MIT professors, not as a standalone textbook.</p>
+<p>My goal is to adapt this material for independent learners. To make that possible, I've filled in the gaps in the original guide, added missing chapters, and expanded existing ones. I've also integrated a build and debugging environment for <em>xv6</em>, which can be run inside a Docker container. This setup has been tested on Ubuntu 24.04, Debian 13, Fedora 42, macOS 15.1, and Windows 11.</p>
+<h3 id="who-this-book-is-for"><a class="header" href="#who-this-book-is-for">Who This Book Is For</a></h3>
+<p>This book is primarily intended for:</p>
+<ul>
+<li>students and instructors of operating systems courses in universities and technical colleges;</li>
+<li>systems programmers who want to gain a practical understanding of how Unix-like operating systems work to write more informed code;</li>
+<li>aspiring kernel hackers eager to contribute to Linux or any other OS kernel.</li>
+</ul>
+<p>You're expected to have some experience with C programming, to work in (or at least be familiar with) a Unix-like system or WSL2, and to feel comfortable using the command line. Familiarity with Docker and Git is also assumed.</p>
+<h3 id="license"><a class="header" href="#license">License</a></h3>
+<p>The original guide was published under the MIT License. I've revised and expanded it, and I'm releasing my modifications under the same license — in the spirit of openness and collaboration. The MIT License is one of the most permissive licenses ever created. It allows you to:</p>
+<ul>
+<li>use this material freely for personal or commercial purposes;</li>
+<li>modify, copy, publish, and distribute it without restrictions;</li>
+<li>include it in your own projects, even proprietary ones;</li>
+<li>all without asking permission from me or the original authors.</li>
+</ul>
+<p>The only requirement is to preserve author attribution.</p>
+<h3 id="acknowledgments"><a class="header" href="#acknowledgments">Acknowledgments</a></h3>
+<p>This work wouldn't have been possible without the contributions of my team. Special thanks to <strong>Natalia Pisareva</strong> for editing the Russian text and <strong>Yulia Babakova</strong> for reviewing the English version, including the parts written by <strong>Russ Cox</strong>, <strong>Frans Kaashoek</strong>, and <strong>Robert Morris</strong>. All changes made to the original English text were proposed to its authors.</p>
+<div align="right">
+    <div>Evgeny Golyshev</div>
+    <div>October 2025</div>
+</div>
+<h3 id="acknowledgments-from-the-original-authors"><a class="header" href="#acknowledgments-from-the-original-authors">Acknowledgments from the Original Authors</a></h3>
+<p>We have used this text in 6.828 and 6.1810, the operating system classes at MIT. We thank the faculty, teaching assistants, and students of those classes who have all directly or indirectly contributed to xv6. In particular, we would like to thank Adam Belay, Austin Clements, and Nickolai Zeldovich. Finally, we would like to thank people who emailed us bugs in the text or suggestions for improvements: Abutalib Aghayev, Sebastian Boehm, brandb97, Anton Burtsev, Raphael Carvalho, Tej Chajed,Brendan Davidson, Rasit Eskicioglu, Color Fuzzy, Wojciech Gac, Giuseppe, Tao Guo, Haibo Hao, Naoki Hayama, Chris Henderson, Robert Hilderman, Eden Hochbaum, Wolfgang Keller, Paweł Kraszewski, Henry Laih, Jin Li, Austin Liew, lyazj@github.com, Pavan Maddamsetti, Jacek Masiulaniec, Michael McConville, m3hm00d, Mes0903, miguelgvieira, Mark Morrissey, Muhammed Mourad, Harry Pan, Harry Porter, Siyuan Qian, Zhefeng Qiao, Askar Safin, Salman Shah, Huang Sha, Vikram Shenoy, Adeodato Simó, Ruslan Savchenko, Pawel Szczurko, Warren Toomey, tyfkda, tzerbib, Vanush Vaswani, Chen Wang, Xi Wang, and Zou Chang Wei, Sam Whitlock, Qiongsi Wu, LucyShawYang, ykf1114@gmail.com, and Meng Zhou.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+<h3 id="what-is-xv6"><a class="header" href="#what-is-xv6">What is xv6</a></h3>
+<p>xv6 was designed for MIT's operating system classes in the summer of 2006, and its first public release came out in the fall of 2011 for the x86 architecture<sup class="footnote-reference" id="fr-1-1"><a href="#footnote-1">1</a></sup>. In September 2019, it was ported to RISC-V.</p>
+<p>Now, you might reasonably ask: why did they need to create a new operating system for this? Why not just use Linux? After all, there's a good precedent: in the book Understanding the Linux Kernel, its authors Daniel Bovet and Marco Cesati described how they used Linux as a case study in their operating systems classes at the University of Tor Vergata in Rome.</p>
+<p>However, the authors began using Linux for this purpose back in 1997, and the first edition of their book was published in 2000 — when Linux was still a relatively compact operating system kernel full of straightforward design choices. Even by the third edition in 2005, Linux was still fairly simple. But today, Linux is way too complex to demonstrate operating system design concepts. Every part of the kernel — whether it's the scheduler or the memory management subsystem — could take a lifetime to fully understand. And students usually only have one semester for an OS course.</p>
+<p>MIT, of course, took its own path. Back when Linux was still a viable option, they chose to use the sixth edition of the original UNIX, known as V6. It's hard to imagine the kind of hell those students went through — studying a 30-year-old operating system written in an early version of C (a predecessor to K&amp;R) and running on obsolete PDP-11 hardware. By around 2006, though, it became clear that V6 needed to be replaced with something more practical. But by that time, Linux had already grown too complex for teaching. And that's most likely how xv6 came to be.</p>
+<p>Today, xv6 has just over 9,000 lines of modern C code, not counting comments. Unlike V6, it supports multicore processors, with concurrency implemented through locks and threads.</p>
+<p>As for why xv6 was ported from x86 to RISC-V in 2019 — that part still puzzles me. I've read that it was done to move away from emulators and run the OS on real hardware, but that argument seems weak. In 2019, x86 was still everywhere, while RISC-V was little more than an academic curiosity. That said, RISC-V's position today looks much stronger, and using it as xv6's target architecture now makes perfect sense. Plus, it gives us a good reason to talk about RISC-V later in this guide — which, trust me, we will.</p>
+<h3 id="architecture-of-xv6"><a class="header" href="#architecture-of-xv6">Architecture of xv6</a></h3>
+<p>Now let's talk about where xv6 fits in the world of operating systems.</p>
+<p>The xv6 kernel is monolithic — all its services run within a single address space and in privileged mode, which makes interaction between subsystems extremely straightforward — the kernel can simply call functions directly, just like user-space applications do. This design makes monolithic kernels both fast and simple, but at the cost of reliability: if one subsystem crashes, the entire system goes down with it.</p>
+<p>Both V6 and Linux are examples of monolithic kernels. In fact, xv6 closely resembles early versions of Linux, making it an ideal starting point for anyone dreaming of one day becoming a Linux kernel hacker.</p>
+<p>Monolithic kernels are often contrasted with microkernels, where kernel subsystems are isolated and independent, each running in its own address space and communicating via message passing. According to the principles of microkernel design, only those subsystems that truly need privileged access should have it — everything else should operate separately. As you can imagine, this approach greatly complicates kernel design and reduces performance, but the reward is stability — a crash in one subsystem is only that subsystem's problem.</p>
+<p>To strike a balance between performance and reliability, modern microkernel-based operating systems — like macOS — often run most components in privileged mode. This approach saves a significant amount of resources by minimizing context switches during inter-subsystem communication.</p>
+<hr>
+<ol class="footnote-definition"><li id="footnote-1">
+<p><a href="https://pdos.csail.mit.edu/6.828/2019/xv6.html">https://pdos.csail.mit.edu/6.828/2019/xv6.html</a> <a href="#fr-1-1">↩</a></p>
+</li>
+</ol><div style="break-before: page; page-break-before: always;"></div><h1 id="test"><a class="header" href="#test">Test</a></h1>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+
+    </div>
+    </body>
+</html>
