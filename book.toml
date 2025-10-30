@@ -25,3 +25,7 @@ monofontfallback = [
   "NotoSansMonoCJKSC:",
 ]
 geometry = ["a4paper"]
+header-includes = [
+  "\\usepackage{pdfpages}",
+  "\\AtBeginDocument{\\includepdf[pages=1,fitpaper=true,pagecommand={\\thispagestyle{empty}}]{src/cover.pdf}\\clearpage}",
+]
