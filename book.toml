@@ -30,4 +30,5 @@ header-includes = [
   "\\usepackage{pdfpages}",
   "\\AtBeginDocument{\\includepdf[pages=1,fitpaper=true,pagecommand={\\thispagestyle{empty}}]{src/cover.pdf}\\clearpage}",
   "\\setlength{\\parindent}{1.5em}",
+  "\\linespread{1.3}",
 ]
