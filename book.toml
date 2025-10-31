@@ -6,6 +6,7 @@ src = "src"
 title = "xv6: a simple, Unix-like teaching operating system"
 
 [output.html]
+additional-css = ["theme/css/custom-paragraph.css"]
 
 [output.pandoc]
 optional = true
@@ -28,4 +29,5 @@ geometry = ["a4paper"]
 header-includes = [
   "\\usepackage{pdfpages}",
   "\\AtBeginDocument{\\includepdf[pages=1,fitpaper=true,pagecommand={\\thispagestyle{empty}}]{src/cover.pdf}\\clearpage}",
+  "\\setlength{\\parindent}{1.5em}",
 ]
