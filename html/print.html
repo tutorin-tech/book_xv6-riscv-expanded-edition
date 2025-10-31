@@ -30,6 +30,7 @@
         <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/css/custom-paragraph.css">
 
 
         <!-- Provide site root and default themes to javascript -->
@@ -177,32 +178,33 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="preface"><a class="header" href="#preface">Preface</a></h1>
-<p>At MIT, there is an excellent course on operating systems that I'd like to share with you. Its approach combines theory and practice in a remarkably effective way.</p>
+<p>MIT offers a top-tier operating systems course, and I’d like to share it with you. Their approach strikes a great balance between theory and hands-on practice.</p>
 <ul>
-<li>The <strong>practical part</strong> is built around <em>xv6</em>, an educational operating system written in C that implements all the core concepts of modern OS design. In many ways, it resembles early versions of Linux.</li>
-<li>The <strong>theoretical part</strong> is covered in a detailed guide to operating systems in general and <em>xv6</em> in particular.</li>
+<li>The practical part is based on the <strong>teaching operating system xv6</strong> — it's written in C and implements all the core concepts of modern OS design. In many ways, xv6 resembles early Linux.</li>
+<li>The theoretical part comes from a <strong>guide on operating systems</strong> in general and on xv6 in particular.</li>
 </ul>
-<p>Both the code and the guide are freely available under one of the most permissive licenses — the MIT License. On the one hand, this makes it an outstanding resource for self-study; on the other, the learning curve is quite steep because the guide doesn't explain how to build, run, or debug the OS. That's understandable — the text was created as lecture material for MIT professors, not as a standalone textbook.</p>
-<p>My goal is to adapt this material for independent learners. To make that possible, I've filled in the gaps in the original guide, added missing chapters, and expanded existing ones. I've also integrated a build and debugging environment for <em>xv6</em>, which can be run inside a Docker container. This setup has been tested on Ubuntu 24.04, Debian 13, Fedora 42, macOS 15.1, and Windows 11.</p>
+<p>Both resources are freely available under one of the most permissive licenses out there — the MIT license. On the one hand, that creates fantastic opportunities for self-learning. On the other, the learning curve can be steep: the guide doesn't really explain how to build and run the OS, debug it, and so on. Which makes sense — it was written to accompany lectures by MIT professors, not to serve as a self-contained textbook.</p>
+<p>My goal is to adapt this material for self-learning. To do that, I filled in the gaps in the guide, wrote missing chapters, and expanded existing ones. On top of that, I added a build and debugging environment to the xv6 codebase that runs in a Docker container. I've tested it on Ubuntu 24.04, Debian 13, Fedora 42, macOS 15.1, and Windows 11.</p>
 <h3 id="who-this-book-is-for"><a class="header" href="#who-this-book-is-for">Who This Book Is For</a></h3>
 <p>This book is primarily intended for:</p>
 <ul>
-<li>students and instructors of operating systems courses in universities and technical colleges;</li>
-<li>systems programmers who want to gain a practical understanding of how Unix-like operating systems work to write more informed code;</li>
-<li>aspiring kernel hackers eager to contribute to Linux or any other OS kernel.</li>
+<li>students taking — and instructors teaching — an operating systems course at universities or technical colleges;</li>
+<li>systems programmers who want to get a hands-on understanding of how a Unix-like operating system works so they can make more deliberate engineering decisions in your code;</li>
+<li>aspiring kernel hackers dreaming of contributing to Linux or the kernel of another operating system.</li>
 </ul>
-<p>You're expected to have some experience with C programming, to work in (or at least be familiar with) a Unix-like system or WSL2, and to feel comfortable using the command line. Familiarity with Docker and Git is also assumed.</p>
+<p>It assumes you already have some experience programming in C, that you work in a Unix-like environment (or are at least aware of WSL2), and that you're comfortable with the shell. I also expect you to be familiar with <strong>Docker</strong> and <strong>Git</strong>.</p>
 <h3 id="license"><a class="header" href="#license">License</a></h3>
-<p>The original guide was published under the MIT License. I've revised and expanded it, and I'm releasing my modifications under the same license — in the spirit of openness and collaboration. The MIT License is one of the most permissive licenses ever created. It allows you to:</p>
+<p>I received the original text of the guide under the MIT license. I improved and extended it, and released my changes under the MIT license as well. It's one of the most permissive licenses humanity has come up with. It allows you to:</p>
 <ul>
-<li>use this material freely for personal or commercial purposes;</li>
-<li>modify, copy, publish, and distribute it without restrictions;</li>
-<li>include it in your own projects, even proprietary ones;</li>
-<li>all without asking permission from me or the original authors.</li>
+<li><strong>use</strong> this material however you like — for personal or commercial purposes;</li>
+<li><strong>modify</strong>, <strong>copy</strong>, <strong>publish</strong>, and <strong>distribute</strong> it without restrictions;</li>
+<li><strong>include</strong> it in your own projects, even proprietary ones;</li>
+<li>and do all of that <strong>without asking</strong> for my <strong>permission</strong> or the permission of the original authors.</li>
 </ul>
-<p>The only requirement is to preserve author attribution.</p>
+<p>The only requirement is to give credit to all authors.</p>
 <h3 id="acknowledgments"><a class="header" href="#acknowledgments">Acknowledgments</a></h3>
-<p>This work wouldn't have been possible without the contributions of my team. Special thanks to <strong>Natalia Pisareva</strong> for editing the Russian text and <strong>Yulia Babakova</strong> for reviewing the English version, including the parts written by <strong>Russ Cox</strong>, <strong>Frans Kaashoek</strong>, and <strong>Robert Morris</strong>. All changes made to the original English text were proposed to its authors.</p>
+<p>This work would have been impossible without the contribution of my team. Many thanks to <strong>Julia Babakova</strong> for working with the English text, including portions originally written by Russ Cox, Frans Kaashoek, and Robert Morris. In true open-source spirit, all changes were submitted back to the authors for review. Special thanks also to <strong>Polina Migel</strong> for helping format the text for the web and PDF versions of the book. Thanks to her, you can choose the format that suits you best.</p>
+<p>I'd like to extend special gratitude to the subscribers of my Telegram channel, <strong>CusDeb Magazine Pro</strong>. They helped me keep up a steady pace: since mid-October 2025, I’ve been publishing each new section of this book in the channel along with homework assignments. Subscribers carefully read the material and ask questions about it. I use this feedback to make the text even clearer and more accessible.</p>
 <div align="right">
     <div>Evgeny Golyshev</div>
     <div>October 2025</div>
@@ -211,24 +213,133 @@
 <p>We have used this text in 6.828 and 6.1810, the operating system classes at MIT. We thank the faculty, teaching assistants, and students of those classes who have all directly or indirectly contributed to xv6. In particular, we would like to thank Adam Belay, Austin Clements, and Nickolai Zeldovich. Finally, we would like to thank people who emailed us bugs in the text or suggestions for improvements: Abutalib Aghayev, Sebastian Boehm, brandb97, Anton Burtsev, Raphael Carvalho, Tej Chajed,Brendan Davidson, Rasit Eskicioglu, Color Fuzzy, Wojciech Gac, Giuseppe, Tao Guo, Haibo Hao, Naoki Hayama, Chris Henderson, Robert Hilderman, Eden Hochbaum, Wolfgang Keller, Paweł Kraszewski, Henry Laih, Jin Li, Austin Liew, lyazj@github.com, Pavan Maddamsetti, Jacek Masiulaniec, Michael McConville, m3hm00d, Mes0903, miguelgvieira, Mark Morrissey, Muhammed Mourad, Harry Pan, Harry Porter, Siyuan Qian, Zhefeng Qiao, Askar Safin, Salman Shah, Huang Sha, Vikram Shenoy, Adeodato Simó, Ruslan Savchenko, Pawel Szczurko, Warren Toomey, tyfkda, tzerbib, Vanush Vaswani, Chen Wang, Xi Wang, and Zou Chang Wei, Sam Whitlock, Qiongsi Wu, LucyShawYang, ykf1114@gmail.com, and Meng Zhou.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
 <h3 id="what-is-xv6"><a class="header" href="#what-is-xv6">What is xv6</a></h3>
-<p>xv6 was designed for MIT's operating system classes in the summer of 2006, and its first public release came out in the fall of 2011 for the x86 architecture<sup class="footnote-reference" id="fr-1-1"><a href="#footnote-1">1</a></sup>. In September 2019, it was ported to RISC-V.</p>
-<p>Now, you might reasonably ask: why did they need to create a new operating system for this? Why not just use Linux? After all, there's a good precedent: in the book Understanding the Linux Kernel, its authors Daniel Bovet and Marco Cesati described how they used Linux as a case study in their operating systems classes at the University of Tor Vergata in Rome.</p>
-<p>However, the authors began using Linux for this purpose back in 1997, and the first edition of their book was published in 2000 — when Linux was still a relatively compact operating system kernel full of straightforward design choices. Even by the third edition in 2005, Linux was still fairly simple. But today, Linux is way too complex to demonstrate operating system design concepts. Every part of the kernel — whether it's the scheduler or the memory management subsystem — could take a lifetime to fully understand. And students usually only have one semester for an OS course.</p>
-<p>MIT, of course, took its own path. Back when Linux was still a viable option, they chose to use the sixth edition of the original UNIX, known as V6. It's hard to imagine the kind of hell those students went through — studying a 30-year-old operating system written in an early version of C (a predecessor to K&amp;R) and running on obsolete PDP-11 hardware. By around 2006, though, it became clear that V6 needed to be replaced with something more practical. But by that time, Linux had already grown too complex for teaching. And that's most likely how xv6 came to be.</p>
-<p>Today, xv6 has just over 9,000 lines of modern C code, not counting comments. Unlike V6, it supports multicore processors, with concurrency implemented through locks and threads.</p>
-<p>As for why xv6 was ported from x86 to RISC-V in 2019 — that part still puzzles me. I've read that it was done to move away from emulators and run the OS on real hardware, but that argument seems weak. In 2019, x86 was still everywhere, while RISC-V was little more than an academic curiosity. That said, RISC-V's position today looks much stronger, and using it as xv6's target architecture now makes perfect sense. Plus, it gives us a good reason to talk about RISC-V later in this guide — which, trust me, we will.</p>
-<h3 id="architecture-of-xv6"><a class="header" href="#architecture-of-xv6">Architecture of xv6</a></h3>
-<p>Now let's talk about where xv6 fits in the world of operating systems.</p>
-<p>The xv6 kernel is monolithic — all its services run within a single address space and in privileged mode, which makes interaction between subsystems extremely straightforward — the kernel can simply call functions directly, just like user-space applications do. This design makes monolithic kernels both fast and simple, but at the cost of reliability: if one subsystem crashes, the entire system goes down with it.</p>
-<p>Both V6 and Linux are examples of monolithic kernels. In fact, xv6 closely resembles early versions of Linux, making it an ideal starting point for anyone dreaming of one day becoming a Linux kernel hacker.</p>
-<p>Monolithic kernels are often contrasted with microkernels, where kernel subsystems are isolated and independent, each running in its own address space and communicating via message passing. According to the principles of microkernel design, only those subsystems that truly need privileged access should have it — everything else should operate separately. As you can imagine, this approach greatly complicates kernel design and reduces performance, but the reward is stability — a crash in one subsystem is only that subsystem's problem.</p>
-<p>To strike a balance between performance and reliability, modern microkernel-based operating systems — like macOS — often run most components in privileged mode. This approach saves a significant amount of resources by minimizing context switches during inter-subsystem communication.</p>
+<p>xv6 was originally created for the MIT operating systems course in the summer of 2006, and its first public release came out in the fall of 2011 for the x86 architecture. In September 2019, xv6 was ported to RISC-V. Now, you might reasonably ask: why create a new operating system at all? Why not just use Linux? After all, there's a successful precedent: in the book <strong>Understanding the Linux Kernel</strong>, its authors <strong>Daniel Bovet</strong> and <strong>Marco Cesati</strong> described how they used Linux as a case study in their operating systems lectures at the University of Tor Vergata in Rome. But here is an interesting detail: they started using Linux for teaching in 1997, and the first edition of their book was published in 2000. At that time, Linux was still a relatively compact kernel with many straightforward design decisions. Even by the time the third edition came out in 2005, Linux was still simple enough to study meaningfully in an academic context. Today, however, it's no longer suitable for demonstrating core operating-system design concepts, since every subsystem — whether it's the scheduler or the memory-management system — requires a significant part of one's life to properly understand. Meanwhile, students typically only have a single semester for an operating systems course.</p>
+<p>MIT has always had its own way of doing things. Back when it was still feasible to use early Linux for teaching, the institute chose to rely instead on the 6th Edition of the original UNIX — known as V6. It's hard to imagine what kind of hell those students had to go through — armed with <strong>John Lions</strong>'s commentary on V6, they dove into a 30-year-old operating system written in an early version of C (a predecessor of K&amp;R) and running on aging PDP-11 hardware. And when it became clear around 2006 that it was time to move away from V6 toward something more practical, Linux had already grown too complex for teaching purposes. That is most likely how the teaching operating system xv6 came to be. It was inspired by V6 and built by reworking it, but xv6 is not a direct port. Unlike V6, it uses the modern ELF executable format, like contemporary Unix-like<sup class="footnote-reference" id="fr-1-1"><a href="#footnote-1">1</a></sup> systems from the Linux and BSD families, and it supports multicore processors. Concurrency in xv6 is implemented with locks and threads. Today, the operating system consists of just over 9,000 lines of modern C code, not counting comments.</p>
+<p>Why xv6 was ported from x86 to RISC-V in 2019 is not entirely clear to me. I've seen claims that the goal was to move away from emulators and run the OS on real hardware, but that argument feels pretty weak — in 2019 x86 was still an extremely popular architecture with plenty of hardware available in every shape and size, while RISC-V still looked like an academic curiosity. That said, RISC-V's position today is much stronger than it used to be, and using it as the target architecture for xv6 now looks perfectly reasonable. Even better, it gives us a chance to talk about RISC-V in this book — which is exactly what we're about to do.</p>
+<h3 id="risc-v"><a class="header" href="#risc-v">RISC-V</a></h3>
+<p>RISC-V began as a research project at the University of California, Berkeley in May 2010. Today, RISC-V provides an open and flexible instruction set architecture (ISA), allowing the development of processors for any application areas without licensing fees or usage restrictions. Here are a few key examples:</p>
+<ul>
+<li>In Linux, starting from version 4.15 (released January 28, 2018)</li>
+<li>In Debian, unofficially starting April 2, 2018, and officially from July 23, 2023</li>
+<li>In Android, starting October 23, 2022</li>
+</ul>
+<p>On March 1, 2021, it became known that MIPS Technologies was switching to developing the eighth generation of MIPS based on RISC-V. Previously, MIPS processors were used in the Nintendo 64, Sony PlayStation, PlayStation 2, PlayStation Portable, and in many routers. That's how RISC-V pushed MIPS out — and ARM might be next. The thing is, RISC-V has a major advantage over ARM: it doesn't require licensing fees. So in the near future we may well see RISC-V displacing ARM in the consumer electronics market.</p>
+<p>Despite the progress in building hardware on an open architecture, Linus Torvalds expressed concern in April 2024<sup class="footnote-reference" id="fr-2-1"><a href="#footnote-2">2</a></sup> that RISC-V may repeat the mistakes of its predecessors. According to him, we've seen this before: when ARM became a server platform, it began stepping on the same rakes as x86.</p>
+<h3 id="xv6-architecture"><a class="header" href="#xv6-architecture">xv6 architecture</a></h3>
+<p>Operating systems can be classified by purpose and by kernel architecture. As for purpose, we've already discussed that xv6 is a narrowly focused OS designed to serve as a case study for students learning operating-system design. Now let's turn to its kernel architecture.</p>
+<p>The xv6 kernel is <em>monolithic</em>. This means that all of its services run in a single address space in <em>privileged mode</em>, so interaction between different kernel subsystems is very straightforward: the kernel can simply call functions directly, just like user-space programs do. This makes monolithic kernels very fast and keeps their design simple. The downside is reliability: if one subsystem crashes, the entire system crashes with it. V6 and Linux are both monolithic kernels. In many ways, xv6 resembles early Linux.</p>
+<p>Monolithic kernels are typically contrasted with <em>microkernels</em>, where kernel subsystems are isolated and independent, each running in its own address space, and communication between them is message-based. Moreover, by the rules of microkernel architecture, only those components that truly require privileged execution should run in privileged mode; everything else should run in <em>non-privileged mode</em>. As you might guess, this significantly complicates the kernel design and leads to performance loss — but the reward is reliability: a failure in one subsystem only affects that subsystem. To avoid sacrificing performance while still benefiting from microkernel reliability, modern microkernel-based operating systems — such as macOS — run all major OS components in privileged mode. This approach is known as a <em>hybrid</em> design. In this case, substantial resources are saved by avoiding context switches during message passing between subsystems.</p>
+<h3 id="overview-of-other-operating-systems"><a class="header" href="#overview-of-other-operating-systems">Overview of Other Operating Systems</a></h3>
+<p>The goal of this section is to help you answer the question of where you can apply the knowledge and skills you've gained after you turn the last page of this book. Certainly, some of you may decide to become kernel hackers and start building a path toward contributing to the Linux kernel. But for others, Linux development might feel like too ambitious a starting point. So in this section, I suggest looking at two other compact specialized operating systems and two general-purpose ones that you may want to explore more deeply later on — and perhaps even contribute to.</p>
+<h4 id="hermit"><a class="header" href="#hermit">Hermit</a></h4>
+<p><a href="https://hermit-os.org">Hermit</a> is a unikernel written in Rust. It provides a runtime environment for a single application written in C/C++, Go, or Fortran. This application is bundled together with the kernel, making it self-contained and able to run on machines without an operating system. Hermit is particularly well suited for running applications in virtual machines, where the hardware set is limited and predictable, eliminating the need to ship drivers for every possible device. However, nothing prevents you from running such a system on bare metal — especially when targeting a specific device with a known, fixed hardware configuration.</p>
+<h4 id="redox"><a class="header" href="#redox">Redox</a></h4>
+<p><a href="https://redox-os.org">Redox</a> is a microkernel-based, Unix-like general-purpose operating system, also written in Rust. True to microkernel principles, all driver code in Redox runs in unprivileged mode.</p>
+<p>For compatibility with existing applications, Redox provides a POSIX compatibility layer that allows many programs to run without modification. Moreover, on May 31, 2025, support for X11 was announced in the display server, meaning Redox can now run unmodified X11-based applications.</p>
+<p>Redox has a real chance of maturing into a full-fledged Unix-like operating system where Linux users will feel at home and won't suffer from a lack of software, since most applications will run without porting. Notably, for its userland, Redox uses the Rust-based <code>uutils coreutils</code> suite — the same one used in Ubuntu starting from version 25.10.</p>
+<h4 id="micropythonos"><a class="header" href="#micropythonos">MicroPythonOS</a></h4>
+<p><a href="https://micropythonos.com">MicroPythonOS</a> is an operating system for microcontrollers such as the ESP32. It is written in Python and uses the MicroPython interpreter — a lightweight and efficient implementation of the language specifically designed for embedded systems.</p>
+<p>The architecture of MicroPythonOS follows the “everything is an app” philosophy: the system kernel handles hardware initialization, multitasking, and the UI, while system functions like Wi-Fi configuration or updates are implemented as separate applications. Applications are also meant to be written in Python.</p>
+<p>MicroPythonOS features an Android-like user interface, an app store, and over-the-air updates.</p>
+<h4 id="asterinas"><a class="header" href="#asterinas">Asterinas</a></h4>
+<p><a href="https://asterinas.github.io">Asterinas</a> is a general-purpose operating-system kernel, also written in Rust. Its key feature is binary compatibility with Linux. Thanks to this, the Linux kernel can be seamlessly replaced by Asterinas without breaking user-space applications, while improving memory-safety guarantees.</p>
 <hr>
 <ol class="footnote-definition"><li id="footnote-1">
-<p><a href="https://pdos.csail.mit.edu/6.828/2019/xv6.html">https://pdos.csail.mit.edu/6.828/2019/xv6.html</a> <a href="#fr-1-1">↩</a></p>
+<p>Except for macOS, which uses Mach-O. <a href="#fr-1-1">↩</a></p>
 </li>
-</ol><div style="break-before: page; page-break-before: always;"></div><h1 id="test"><a class="header" href="#test">Test</a></h1>
-
+<li id="footnote-2">
+<p>The interview "Keynote: Linus Torvalds, Creator of Linux &amp; Git, in Conversation with Dirk Hohndel" on The Linux Foundation channel, published on April 26, 2024. <a href="#fr-2-1">↩</a></p>
+</li>
+</ol><div style="break-before: page; page-break-before: always;"></div><h1 id="preparing-the-environment"><a class="header" href="#preparing-the-environment">Preparing the Environment</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="tooling"><a class="header" href="#tooling">Tooling</a></h2>
+<p>To build and run xv6, you only need <strong>Docker</strong> and the <strong>make</strong> utility installed. Everything else happens automatically: <strong>QEMU</strong> will run inside the Docker container, and xv6 will run inside QEMU.</p>
+<p>QEMU is currently one of the most rapidly evolving open-source projects and plays a critical role for GNU/Linux distributions and other open-source systems that support multiple architectures. Instead of having physical hardware for every architecture you want to build for, you simply use the most common hardware on the market and rely on QEMU to emulate the rest. Over the years, QEMU has grown to support full emulation for 14 hardware architectures, and the number of emulated devices now exceeds 400.</p>
+<p>xv6 supports only the RISC-V architecture. Most likely, your machine uses either an ARM or x86 processor, so we'll take the same approach: we'll use QEMU to build and run xv6.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="building-and-running-xv6"><a class="header" href="#building-and-running-xv6">Building and Running xv6</a></h2>
+<p>To build and run the operating system, execute the following commands:</p>
+<pre><code class="language-bash">git clone git@github.com:tutorin-tech/xv6-riscv.git
+cd xv6-riscv
+make docker-qemu
+</code></pre>
+<p>xv6 will build, launch, and drop you into its shell. Just remember that everything is running inside QEMU. To quit QEMU, type <code>Ctrl-a x</code> (press <code>Ctrl</code> and <code>a</code> at the same time, then <code>x</code>).</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="debugging-xv6"><a class="header" href="#debugging-xv6">Debugging xv6</a></h2>
+<p>There are several ways to understand how an operating system works. One of them is debugging — executing different parts of the kernel code and inspecting variables and data structures to see what's happening at each stage.</p>
+<p>The goal of this section is to introduce you to the <strong>GNU Debugger</strong> (GDB) and give you a hands-on task to help you get comfortable using it.</p>
+<p>Debugging an operating-system kernel is different from debugging any other program: the kernel must be debugged remotely, meaning the debugger runs on one machine while the OS kernel runs on another. In the modern world, virtual machines and emulators make this much easier. You've just learned how to run xv6 in QEMU, which emulates RISC-V. The choice of QEMU was not accidental — it includes a built-in stub for remote interaction with GDB. So now we'll move on to the second step: running xv6 in debug mode and attaching GDB to it. But first, let's cover a bit of theory.</p>
+<p>There are two types of debugging:</p>
+<ul>
+<li><em>Source-level debugging</em> — when we have the source code, compile it with debugging information, and can step through the program line by line.</li>
+<li><em>Binary-level debugging</em> — when we don't have the source code and must rely on a disassembler, tracing, and runtime memory inspection.</li>
+</ul>
+<p>Our case is source-level debugging, since we do have the xv6 source code. Moreover, you've already built xv6 with debugging information — it wasn't useful last time, but it will come in handy now.</p>
+<p>To run the xv6 kernel under the debugger, execute the following commands:</p>
+<pre><code class="language-bash">cd xv6-riscv  # go back to the xv6 source directory
+git pull
+make docker-qemu-gdb
+</code></pre>
+<p>After that, you will see the prompt:</p>
+<blockquote>
+<p>*** Now run 'gdb' in another window.</p>
+</blockquote>
+<p>Now open another terminal, enter the container that is currently running, and start GDB, passing it the xv6 kernel binary:</p>
+<pre><code class="language-bash">docker exec -it &lt;container-name&gt; bash
+gdb-multiarch kernel/kernel
+</code></pre>
+<p>If you see something like this:</p>
+<pre><code class="language-bash">Reading symbols from kernel/kernel...
+The target architecture is set to "riscv:rv64".
+0x0000000000001000 in ?? ()
+(gdb)
+</code></pre>
+<p>then everything is working correctly. The remote debugging stub in QEMU stops the virtual machine before the first instruction is executed after reset — at address <code>0x1000</code> in physical memory. As a result, if you switch back to the first terminal where you started xv6 in debug mode, you'll notice that nothing appears to be happening there yet.</p>
+<p>Return to the terminal where GDB is running. It should look familiar — much like a Bash shell — except that the prompt is <code>(gdb)</code> instead of <code>$</code>. The debugger is always in one of three states:</p>
+<ol>
+<li>the program being debugged is running;</li>
+<li>the program is paused;</li>
+<li>the program is not running.</li>
+</ol>
+<p>Most commands can be entered in the latter two states. Right now, the xv6 kernel is paused, and GDB is waiting for your command.</p>
+<p>I hope you've already used debuggers in various IDEs and that the term breakpoint is familiar to you. Let's set a breakpoint on the system call <code>kfork</code> (don't worry if the term "system call" doesn't mean much to you yet, or if <code>kfork</code> just looks like a random set of letters — we'll get to all of that soon). To do this, type <code>b kfork</code>, and then c to continue execution of the xv6 kernel.</p>
+<p>Switch back to the first terminal where xv6 is running in debug mode, and you'll see that the operating system has started booting and then stopped at:</p>
+<pre><code class="language-bash">init: starting sh
+</code></pre>
+<p>The reason this happens is that <code>kfork</code> is the implementation of the Unix system call <code>fork</code>, which is used to create a child process. So when the kernel finished initializing the virtual hardware and reached the point where it needed to start the shell <code>(sh)</code>, it was paused again and the debugger stopped inside <code>kfork</code>. From here, you can step through the code to see how processes are created inside the operating system. To do that, you have two commands at your disposal — <code>step</code> and <code>next</code>, which can be shortened to <code>s</code> and <code>n</code>.</p>
+<ul>
+<li><code>step</code> executes the program one line at a time, and when it encounters a function call, it steps into that function and continues executing it line by line, recursively.</li>
+<li><code>next</code> does the same thing, but does not step into functions.</li>
+</ul>
+<p>By the way, using the shortcut commands <code>s</code> and <code>n</code> is not the only way to boost your productivity in the debugger. If you need to run <code>next</code> several times in a row, type <code>n</code> once and then just press Enter — GDB remembers the last executed command and repeats it when you submit an empty input.</p>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="exercise"><a class="header" href="#exercise">Exercise</a></h2>
+<p>Get comfortable with GDB by stepping through the <code>kfork</code> function. Here's some reference information to make the process a bit more fun.</p>
+<p><code>kfork</code> creates an almost exact copy of the current process, which will then run independently. The parent process receives the child's PID, and the child receives 0, allowing both to determine who is who. The work <code>kfork</code> does can be broken down into five steps:</p>
+<ol>
+<li>The function allocates space for a new empty process and prepares it to run.</li>
+<li><code>kfork</code> then copies the parent process's memory — everything currently loaded into memory (code, data, etc.) is duplicated for the new process.</li>
+<li>Next, the function sets up the child's execution context: the new process gets the same starting point as the parent, but with one key difference — when it returns from <code>kfork</code>, it will see the value 0, so it can tell it's the child.</li>
+<li><code>kfork</code> then transfers resources to the child: the new process receives copies of all open files and the parent's current working directory.</li>
+<li>Finally, the function marks the child process as ready to run, so the scheduler can pick it up and execute it.</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="operating-system-interface"><a class="header" href="#operating-system-interface">Operating system interface</a></h1>
+<p>The job of an operating system is to share a computer among multiple programs and to provide a more useful set of services than the hardware alone supports. An operating system manages and abstracts the low-level hardware, so that, for example, a word processor need not concern itself with which type of disk hardware is being used. An operating system shares the hardware among multiple programs so that they run (or appear to run) at the same time. Finally, operating systems provide controlled ways for programs to interact, so that they can share data or work together.</p>
+<p>An operating system provides services to user programs through an interface. Designing a good interface turns out to be difficult. On the one hand, we would like the interface to be simple and narrow because that makes it easier to get the implementation right. On the other hand, we may be tempted to offer many sophisticated features to applications. The trick in resolving this tension is to design an interface that relies on a few mechanisms that can be combined to provide much generality.</p>
+<p>xv6, a reimplementation of the Sixth Edition of UNIX, inherits the basic interface designed by <strong>Ken Thompson</strong> and <strong>Dennis Ritchie</strong>, as well as mimicking the internal design of that operating system. Unix provides a narrow interface whose mechanisms combine well, offering a surprising degree of generality. This interface has been so successful that modern operating systems—BSD, Linux, macOS, Solaris, and even, to a lesser extent, Microsoft Windows—have a Unix-like interface. Understanding xv6 is a good start toward understanding any of these systems and many others.</p>
+<p>As <a href="operating-system-interface.html#figure-1-1">Figure 1.1</a> shows, xv6 takes the traditional form of a kernel, a special program that provides services to running programs. Each running program, called a process, has memory containing instructions, data, and a stack. The instructions implement the program's computation. The data are the variables on which the computation acts. The stack organizes the program's procedure calls. A given computer typically has many processes but only a single kernel.</p>
+<p>When a process needs to invoke a kernel service, it invokes a system call, one of the calls in the operating system's interface. The system call enters the kernel; the kernel performs the service and returns. Thus a process alternates between executing in user space and kernel space. As described in detail in subsequent chapters, the kernel uses the hardware protection mechanisms provided by a CPU<sup class="footnote-reference" id="fr-3-1"><a href="#footnote-3">1</a></sup> to ensure that each process executing in user space can access only its own memory.</p>
+<div align="center">
+    <figure id="figure-1-1">
+      <img src="fig/os.svg">
+      <figcaption><strong>Figure 1.1</strong> A kernel and two user processes.</figcaption>
+    </figure>
+</div>
+<p>The kernel executes with the hardware privileges required to implement these protections; user programs execute without those privileges. When a user program invokes a system call, the hardware raises the privilege level and starts executing a pre-arranged function in the kernel.</p>
+<p>The collection of system calls that a kernel provides is the interface that user programs see. The xv6 kernel provides a subset of the services and system calls that Unix kernels traditionally offer.</p>
+<p>The rest of this chapter outlines xv6's services—processes, memory, file descriptors, pipes, and a file system—and illustrates them with code snippets and discussions of how the shell, Unix's command-line user interface, uses them. The shell's use of system calls illustrates how carefully they have been designed.</p>
+<p>The shell is an ordinary program that reads commands from the user and executes them. The fact that the shell is a user program, and not part of the kernel, illustrates the power of the system call interface: there is nothing special about the shell. It also means that the shell is easy to replace; as a result, modern Unix systems have a variety of shells to choose from, each with its own user interface and scripting features. The xv6 shell is a simple implementation of the essence of the Unix Bourne shell. Its implementation can be found at <a href="https://github.com/tutorin-tech/xv6-riscv/blob/riscv/user/sh.c">(user/sh.c:1)</a>.</p>
+<hr>
+<ol class="footnote-definition"><li id="footnote-3">
+<p>This text generally refers to the hardware element that executes a computation with the term CPU, an acronym for central processing unit. Other documentation (e.g., the RISC-V specification) also uses the words processor, core, and hart instead of CPU. <a href="#fr-3-1">↩</a></p>
+</li>
+</ol>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">

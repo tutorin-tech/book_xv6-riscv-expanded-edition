@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Preface - xv6: a simple, Unix-like teaching operating system</title>
+        <title>Operating system interface - xv6: a simple, Unix-like teaching operating system</title>
 
 
         <!-- Custom HTML head -->
@@ -176,49 +176,35 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="preface"><a class="header" href="#preface">Preface</a></h1>
-<p>MIT offers a top-tier operating systems course, and I’d like to share it with you. Their approach strikes a great balance between theory and hands-on practice.</p>
-<ul>
-<li>The practical part is based on the <strong>teaching operating system xv6</strong> — it's written in C and implements all the core concepts of modern OS design. In many ways, xv6 resembles early Linux.</li>
-<li>The theoretical part comes from a <strong>guide on operating systems</strong> in general and on xv6 in particular.</li>
-</ul>
-<p>Both resources are freely available under one of the most permissive licenses out there — the MIT license. On the one hand, that creates fantastic opportunities for self-learning. On the other, the learning curve can be steep: the guide doesn't really explain how to build and run the OS, debug it, and so on. Which makes sense — it was written to accompany lectures by MIT professors, not to serve as a self-contained textbook.</p>
-<p>My goal is to adapt this material for self-learning. To do that, I filled in the gaps in the guide, wrote missing chapters, and expanded existing ones. On top of that, I added a build and debugging environment to the xv6 codebase that runs in a Docker container. I've tested it on Ubuntu 24.04, Debian 13, Fedora 42, macOS 15.1, and Windows 11.</p>
-<h3 id="who-this-book-is-for"><a class="header" href="#who-this-book-is-for">Who This Book Is For</a></h3>
-<p>This book is primarily intended for:</p>
-<ul>
-<li>students taking — and instructors teaching — an operating systems course at universities or technical colleges;</li>
-<li>systems programmers who want to get a hands-on understanding of how a Unix-like operating system works so they can make more deliberate engineering decisions in your code;</li>
-<li>aspiring kernel hackers dreaming of contributing to Linux or the kernel of another operating system.</li>
-</ul>
-<p>It assumes you already have some experience programming in C, that you work in a Unix-like environment (or are at least aware of WSL2), and that you're comfortable with the shell. I also expect you to be familiar with <strong>Docker</strong> and <strong>Git</strong>.</p>
-<h3 id="license"><a class="header" href="#license">License</a></h3>
-<p>I received the original text of the guide under the MIT license. I improved and extended it, and released my changes under the MIT license as well. It's one of the most permissive licenses humanity has come up with. It allows you to:</p>
-<ul>
-<li><strong>use</strong> this material however you like — for personal or commercial purposes;</li>
-<li><strong>modify</strong>, <strong>copy</strong>, <strong>publish</strong>, and <strong>distribute</strong> it without restrictions;</li>
-<li><strong>include</strong> it in your own projects, even proprietary ones;</li>
-<li>and do all of that <strong>without asking</strong> for my <strong>permission</strong> or the permission of the original authors.</li>
-</ul>
-<p>The only requirement is to give credit to all authors.</p>
-<h3 id="acknowledgments"><a class="header" href="#acknowledgments">Acknowledgments</a></h3>
-<p>This work would have been impossible without the contribution of my team. Many thanks to <strong>Julia Babakova</strong> for working with the English text, including portions originally written by Russ Cox, Frans Kaashoek, and Robert Morris. In true open-source spirit, all changes were submitted back to the authors for review. Special thanks also to <strong>Polina Migel</strong> for helping format the text for the web and PDF versions of the book. Thanks to her, you can choose the format that suits you best.</p>
-<p>I'd like to extend special gratitude to the subscribers of my Telegram channel, <strong>CusDeb Magazine Pro</strong>. They helped me keep up a steady pace: since mid-October 2025, I’ve been publishing each new section of this book in the channel along with homework assignments. Subscribers carefully read the material and ask questions about it. I use this feedback to make the text even clearer and more accessible.</p>
-<div align="right">
-    <div>Evgeny Golyshev</div>
-    <div>October 2025</div>
+                        <h1 id="operating-system-interface"><a class="header" href="#operating-system-interface">Operating system interface</a></h1>
+<p>The job of an operating system is to share a computer among multiple programs and to provide a more useful set of services than the hardware alone supports. An operating system manages and abstracts the low-level hardware, so that, for example, a word processor need not concern itself with which type of disk hardware is being used. An operating system shares the hardware among multiple programs so that they run (or appear to run) at the same time. Finally, operating systems provide controlled ways for programs to interact, so that they can share data or work together.</p>
+<p>An operating system provides services to user programs through an interface. Designing a good interface turns out to be difficult. On the one hand, we would like the interface to be simple and narrow because that makes it easier to get the implementation right. On the other hand, we may be tempted to offer many sophisticated features to applications. The trick in resolving this tension is to design an interface that relies on a few mechanisms that can be combined to provide much generality.</p>
+<p>xv6, a reimplementation of the Sixth Edition of UNIX, inherits the basic interface designed by <strong>Ken Thompson</strong> and <strong>Dennis Ritchie</strong>, as well as mimicking the internal design of that operating system. Unix provides a narrow interface whose mechanisms combine well, offering a surprising degree of generality. This interface has been so successful that modern operating systems—BSD, Linux, macOS, Solaris, and even, to a lesser extent, Microsoft Windows—have a Unix-like interface. Understanding xv6 is a good start toward understanding any of these systems and many others.</p>
+<p>As <a href="#figure-1-1">Figure 1.1</a> shows, xv6 takes the traditional form of a kernel, a special program that provides services to running programs. Each running program, called a process, has memory containing instructions, data, and a stack. The instructions implement the program's computation. The data are the variables on which the computation acts. The stack organizes the program's procedure calls. A given computer typically has many processes but only a single kernel.</p>
+<p>When a process needs to invoke a kernel service, it invokes a system call, one of the calls in the operating system's interface. The system call enters the kernel; the kernel performs the service and returns. Thus a process alternates between executing in user space and kernel space. As described in detail in subsequent chapters, the kernel uses the hardware protection mechanisms provided by a CPU<sup class="footnote-reference" id="fr-3-1"><a href="#footnote-3">1</a></sup> to ensure that each process executing in user space can access only its own memory.</p>
+<div align="center">
+    <figure id="figure-1-1">
+      <img src="fig/os.svg">
+      <figcaption><strong>Figure 1.1</strong> A kernel and two user processes.</figcaption>
+    </figure>
 </div>
-<h3 id="acknowledgments-from-the-original-authors"><a class="header" href="#acknowledgments-from-the-original-authors">Acknowledgments from the Original Authors</a></h3>
-<p>We have used this text in 6.828 and 6.1810, the operating system classes at MIT. We thank the faculty, teaching assistants, and students of those classes who have all directly or indirectly contributed to xv6. In particular, we would like to thank Adam Belay, Austin Clements, and Nickolai Zeldovich. Finally, we would like to thank people who emailed us bugs in the text or suggestions for improvements: Abutalib Aghayev, Sebastian Boehm, brandb97, Anton Burtsev, Raphael Carvalho, Tej Chajed,Brendan Davidson, Rasit Eskicioglu, Color Fuzzy, Wojciech Gac, Giuseppe, Tao Guo, Haibo Hao, Naoki Hayama, Chris Henderson, Robert Hilderman, Eden Hochbaum, Wolfgang Keller, Paweł Kraszewski, Henry Laih, Jin Li, Austin Liew, lyazj@github.com, Pavan Maddamsetti, Jacek Masiulaniec, Michael McConville, m3hm00d, Mes0903, miguelgvieira, Mark Morrissey, Muhammed Mourad, Harry Pan, Harry Porter, Siyuan Qian, Zhefeng Qiao, Askar Safin, Salman Shah, Huang Sha, Vikram Shenoy, Adeodato Simó, Ruslan Savchenko, Pawel Szczurko, Warren Toomey, tyfkda, tzerbib, Vanush Vaswani, Chen Wang, Xi Wang, and Zou Chang Wei, Sam Whitlock, Qiongsi Wu, LucyShawYang, ykf1114@gmail.com, and Meng Zhou.</p>
-
+<p>The kernel executes with the hardware privileges required to implement these protections; user programs execute without those privileges. When a user program invokes a system call, the hardware raises the privilege level and starts executing a pre-arranged function in the kernel.</p>
+<p>The collection of system calls that a kernel provides is the interface that user programs see. The xv6 kernel provides a subset of the services and system calls that Unix kernels traditionally offer.</p>
+<p>The rest of this chapter outlines xv6's services—processes, memory, file descriptors, pipes, and a file system—and illustrates them with code snippets and discussions of how the shell, Unix's command-line user interface, uses them. The shell's use of system calls illustrates how carefully they have been designed.</p>
+<p>The shell is an ordinary program that reads commands from the user and executes them. The fact that the shell is a user program, and not part of the kernel, illustrates the power of the system call interface: there is nothing special about the shell. It also means that the shell is easy to replace; as a result, modern Unix systems have a variety of shells to choose from, each with its own user interface and scripting features. The xv6 shell is a simple implementation of the essence of the Unix Bourne shell. Its implementation can be found at <a href="https://github.com/tutorin-tech/xv6-riscv/blob/riscv/user/sh.c">(user/sh.c:1)</a>.</p>
+<hr>
+<ol class="footnote-definition"><li id="footnote-3">
+<p>This text generally refers to the hardware element that executes a computation with the term CPU, an acronym for central processing unit. Other documentation (e.g., the RISC-V specification) also uses the words processor, core, and hart instead of CPU. <a href="#fr-3-1">↩</a></p>
+</li>
+</ol>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-
-                            <a rel="next prefetch" href="introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                            <a rel="prev" href="preparing-environment/exercise.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
                             </a>
+
 
                         <div style="clear: both"></div>
                     </nav>
@@ -226,10 +212,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-
-                    <a rel="next prefetch" href="introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                    <a rel="prev" href="preparing-environment/exercise.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
                     </a>
+
             </nav>
 
         </div>

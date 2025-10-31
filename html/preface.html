@@ -29,6 +29,7 @@
         <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/css/custom-paragraph.css">
 
 
         <!-- Provide site root and default themes to javascript -->
@@ -176,32 +177,33 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="preface"><a class="header" href="#preface">Preface</a></h1>
-<p>At MIT, there is an excellent course on operating systems that I'd like to share with you. Its approach combines theory and practice in a remarkably effective way.</p>
+<p>MIT offers a top-tier operating systems course, and I’d like to share it with you. Their approach strikes a great balance between theory and hands-on practice.</p>
 <ul>
-<li>The <strong>practical part</strong> is built around <em>xv6</em>, an educational operating system written in C that implements all the core concepts of modern OS design. In many ways, it resembles early versions of Linux.</li>
-<li>The <strong>theoretical part</strong> is covered in a detailed guide to operating systems in general and <em>xv6</em> in particular.</li>
+<li>The practical part is based on the <strong>teaching operating system xv6</strong> — it's written in C and implements all the core concepts of modern OS design. In many ways, xv6 resembles early Linux.</li>
+<li>The theoretical part comes from a <strong>guide on operating systems</strong> in general and on xv6 in particular.</li>
 </ul>
-<p>Both the code and the guide are freely available under one of the most permissive licenses — the MIT License. On the one hand, this makes it an outstanding resource for self-study; on the other, the learning curve is quite steep because the guide doesn't explain how to build, run, or debug the OS. That's understandable — the text was created as lecture material for MIT professors, not as a standalone textbook.</p>
-<p>My goal is to adapt this material for independent learners. To make that possible, I've filled in the gaps in the original guide, added missing chapters, and expanded existing ones. I've also integrated a build and debugging environment for <em>xv6</em>, which can be run inside a Docker container. This setup has been tested on Ubuntu 24.04, Debian 13, Fedora 42, macOS 15.1, and Windows 11.</p>
+<p>Both resources are freely available under one of the most permissive licenses out there — the MIT license. On the one hand, that creates fantastic opportunities for self-learning. On the other, the learning curve can be steep: the guide doesn't really explain how to build and run the OS, debug it, and so on. Which makes sense — it was written to accompany lectures by MIT professors, not to serve as a self-contained textbook.</p>
+<p>My goal is to adapt this material for self-learning. To do that, I filled in the gaps in the guide, wrote missing chapters, and expanded existing ones. On top of that, I added a build and debugging environment to the xv6 codebase that runs in a Docker container. I've tested it on Ubuntu 24.04, Debian 13, Fedora 42, macOS 15.1, and Windows 11.</p>
 <h3 id="who-this-book-is-for"><a class="header" href="#who-this-book-is-for">Who This Book Is For</a></h3>
 <p>This book is primarily intended for:</p>
 <ul>
-<li>students and instructors of operating systems courses in universities and technical colleges;</li>
-<li>systems programmers who want to gain a practical understanding of how Unix-like operating systems work to write more informed code;</li>
-<li>aspiring kernel hackers eager to contribute to Linux or any other OS kernel.</li>
+<li>students taking — and instructors teaching — an operating systems course at universities or technical colleges;</li>
+<li>systems programmers who want to get a hands-on understanding of how a Unix-like operating system works so they can make more deliberate engineering decisions in your code;</li>
+<li>aspiring kernel hackers dreaming of contributing to Linux or the kernel of another operating system.</li>
 </ul>
-<p>You're expected to have some experience with C programming, to work in (or at least be familiar with) a Unix-like system or WSL2, and to feel comfortable using the command line. Familiarity with Docker and Git is also assumed.</p>
+<p>It assumes you already have some experience programming in C, that you work in a Unix-like environment (or are at least aware of WSL2), and that you're comfortable with the shell. I also expect you to be familiar with <strong>Docker</strong> and <strong>Git</strong>.</p>
 <h3 id="license"><a class="header" href="#license">License</a></h3>
-<p>The original guide was published under the MIT License. I've revised and expanded it, and I'm releasing my modifications under the same license — in the spirit of openness and collaboration. The MIT License is one of the most permissive licenses ever created. It allows you to:</p>
+<p>I received the original text of the guide under the MIT license. I improved and extended it, and released my changes under the MIT license as well. It's one of the most permissive licenses humanity has come up with. It allows you to:</p>
 <ul>
-<li>use this material freely for personal or commercial purposes;</li>
-<li>modify, copy, publish, and distribute it without restrictions;</li>
-<li>include it in your own projects, even proprietary ones;</li>
-<li>all without asking permission from me or the original authors.</li>
+<li><strong>use</strong> this material however you like — for personal or commercial purposes;</li>
+<li><strong>modify</strong>, <strong>copy</strong>, <strong>publish</strong>, and <strong>distribute</strong> it without restrictions;</li>
+<li><strong>include</strong> it in your own projects, even proprietary ones;</li>
+<li>and do all of that <strong>without asking</strong> for my <strong>permission</strong> or the permission of the original authors.</li>
 </ul>
-<p>The only requirement is to preserve author attribution.</p>
+<p>The only requirement is to give credit to all authors.</p>
 <h3 id="acknowledgments"><a class="header" href="#acknowledgments">Acknowledgments</a></h3>
-<p>This work wouldn't have been possible without the contributions of my team. Special thanks to <strong>Natalia Pisareva</strong> for editing the Russian text and <strong>Yulia Babakova</strong> for reviewing the English version, including the parts written by <strong>Russ Cox</strong>, <strong>Frans Kaashoek</strong>, and <strong>Robert Morris</strong>. All changes made to the original English text were proposed to its authors.</p>
+<p>This work would have been impossible without the contribution of my team. Many thanks to <strong>Julia Babakova</strong> for working with the English text, including portions originally written by Russ Cox, Frans Kaashoek, and Robert Morris. In true open-source spirit, all changes were submitted back to the authors for review. Special thanks also to <strong>Polina Migel</strong> for helping format the text for the web and PDF versions of the book. Thanks to her, you can choose the format that suits you best.</p>
+<p>I'd like to extend special gratitude to the subscribers of my Telegram channel, <strong>CusDeb Magazine Pro</strong>. They helped me keep up a steady pace: since mid-October 2025, I’ve been publishing each new section of this book in the channel along with homework assignments. Subscribers carefully read the material and ask questions about it. I use this feedback to make the text even clearer and more accessible.</p>
 <div align="right">
     <div>Evgeny Golyshev</div>
     <div>October 2025</div>

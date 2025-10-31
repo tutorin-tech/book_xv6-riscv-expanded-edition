@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Preface - xv6: a simple, Unix-like teaching operating system</title>
+        <title>Exercise - xv6: a simple, Unix-like teaching operating system</title>
 
 
         <!-- Custom HTML head -->
@@ -12,35 +12,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="highlight-css" href="highlight.css">
-        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
-        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="../highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="../tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="theme/css/custom-paragraph.css">
+        <link rel="stylesheet" href="../theme/css/custom-paragraph.css">
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "";
+            const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex.js";
+            window.path_to_searchindex_js = "../searchindex.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc.js"></script>
+        <script src="../toc.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -107,7 +107,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
             </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -142,7 +142,7 @@
                     <h1 class="menu-title">xv6: a simple, Unix-like teaching operating system</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -176,47 +176,26 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="preface"><a class="header" href="#preface">Preface</a></h1>
-<p>MIT offers a top-tier operating systems course, and I’d like to share it with you. Their approach strikes a great balance between theory and hands-on practice.</p>
-<ul>
-<li>The practical part is based on the <strong>teaching operating system xv6</strong> — it's written in C and implements all the core concepts of modern OS design. In many ways, xv6 resembles early Linux.</li>
-<li>The theoretical part comes from a <strong>guide on operating systems</strong> in general and on xv6 in particular.</li>
-</ul>
-<p>Both resources are freely available under one of the most permissive licenses out there — the MIT license. On the one hand, that creates fantastic opportunities for self-learning. On the other, the learning curve can be steep: the guide doesn't really explain how to build and run the OS, debug it, and so on. Which makes sense — it was written to accompany lectures by MIT professors, not to serve as a self-contained textbook.</p>
-<p>My goal is to adapt this material for self-learning. To do that, I filled in the gaps in the guide, wrote missing chapters, and expanded existing ones. On top of that, I added a build and debugging environment to the xv6 codebase that runs in a Docker container. I've tested it on Ubuntu 24.04, Debian 13, Fedora 42, macOS 15.1, and Windows 11.</p>
-<h3 id="who-this-book-is-for"><a class="header" href="#who-this-book-is-for">Who This Book Is For</a></h3>
-<p>This book is primarily intended for:</p>
-<ul>
-<li>students taking — and instructors teaching — an operating systems course at universities or technical colleges;</li>
-<li>systems programmers who want to get a hands-on understanding of how a Unix-like operating system works so they can make more deliberate engineering decisions in your code;</li>
-<li>aspiring kernel hackers dreaming of contributing to Linux or the kernel of another operating system.</li>
-</ul>
-<p>It assumes you already have some experience programming in C, that you work in a Unix-like environment (or are at least aware of WSL2), and that you're comfortable with the shell. I also expect you to be familiar with <strong>Docker</strong> and <strong>Git</strong>.</p>
-<h3 id="license"><a class="header" href="#license">License</a></h3>
-<p>I received the original text of the guide under the MIT license. I improved and extended it, and released my changes under the MIT license as well. It's one of the most permissive licenses humanity has come up with. It allows you to:</p>
-<ul>
-<li><strong>use</strong> this material however you like — for personal or commercial purposes;</li>
-<li><strong>modify</strong>, <strong>copy</strong>, <strong>publish</strong>, and <strong>distribute</strong> it without restrictions;</li>
-<li><strong>include</strong> it in your own projects, even proprietary ones;</li>
-<li>and do all of that <strong>without asking</strong> for my <strong>permission</strong> or the permission of the original authors.</li>
-</ul>
-<p>The only requirement is to give credit to all authors.</p>
-<h3 id="acknowledgments"><a class="header" href="#acknowledgments">Acknowledgments</a></h3>
-<p>This work would have been impossible without the contribution of my team. Many thanks to <strong>Julia Babakova</strong> for working with the English text, including portions originally written by Russ Cox, Frans Kaashoek, and Robert Morris. In true open-source spirit, all changes were submitted back to the authors for review. Special thanks also to <strong>Polina Migel</strong> for helping format the text for the web and PDF versions of the book. Thanks to her, you can choose the format that suits you best.</p>
-<p>I'd like to extend special gratitude to the subscribers of my Telegram channel, <strong>CusDeb Magazine Pro</strong>. They helped me keep up a steady pace: since mid-October 2025, I’ve been publishing each new section of this book in the channel along with homework assignments. Subscribers carefully read the material and ask questions about it. I use this feedback to make the text even clearer and more accessible.</p>
-<div align="right">
-    <div>Evgeny Golyshev</div>
-    <div>October 2025</div>
-</div>
-<h3 id="acknowledgments-from-the-original-authors"><a class="header" href="#acknowledgments-from-the-original-authors">Acknowledgments from the Original Authors</a></h3>
-<p>We have used this text in 6.828 and 6.1810, the operating system classes at MIT. We thank the faculty, teaching assistants, and students of those classes who have all directly or indirectly contributed to xv6. In particular, we would like to thank Adam Belay, Austin Clements, and Nickolai Zeldovich. Finally, we would like to thank people who emailed us bugs in the text or suggestions for improvements: Abutalib Aghayev, Sebastian Boehm, brandb97, Anton Burtsev, Raphael Carvalho, Tej Chajed,Brendan Davidson, Rasit Eskicioglu, Color Fuzzy, Wojciech Gac, Giuseppe, Tao Guo, Haibo Hao, Naoki Hayama, Chris Henderson, Robert Hilderman, Eden Hochbaum, Wolfgang Keller, Paweł Kraszewski, Henry Laih, Jin Li, Austin Liew, lyazj@github.com, Pavan Maddamsetti, Jacek Masiulaniec, Michael McConville, m3hm00d, Mes0903, miguelgvieira, Mark Morrissey, Muhammed Mourad, Harry Pan, Harry Porter, Siyuan Qian, Zhefeng Qiao, Askar Safin, Salman Shah, Huang Sha, Vikram Shenoy, Adeodato Simó, Ruslan Savchenko, Pawel Szczurko, Warren Toomey, tyfkda, tzerbib, Vanush Vaswani, Chen Wang, Xi Wang, and Zou Chang Wei, Sam Whitlock, Qiongsi Wu, LucyShawYang, ykf1114@gmail.com, and Meng Zhou.</p>
+                        <h2 id="exercise"><a class="header" href="#exercise">Exercise</a></h2>
+<p>Get comfortable with GDB by stepping through the <code>kfork</code> function. Here's some reference information to make the process a bit more fun.</p>
+<p><code>kfork</code> creates an almost exact copy of the current process, which will then run independently. The parent process receives the child's PID, and the child receives 0, allowing both to determine who is who. The work <code>kfork</code> does can be broken down into five steps:</p>
+<ol>
+<li>The function allocates space for a new empty process and prepares it to run.</li>
+<li><code>kfork</code> then copies the parent process's memory — everything currently loaded into memory (code, data, etc.) is duplicated for the new process.</li>
+<li>Next, the function sets up the child's execution context: the new process gets the same starting point as the parent, but with one key difference — when it returns from <code>kfork</code>, it will see the value 0, so it can tell it's the child.</li>
+<li><code>kfork</code> then transfers resources to the child: the new process receives copies of all open files and the parent's current working directory.</li>
+<li>Finally, the function marks the child process as ready to run, so the scheduler can pick it up and execute it.</li>
+</ol>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../preparing-environment/debugging-xv6.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
-                            <a rel="next prefetch" href="introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../operating-system-interface.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -226,8 +205,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../preparing-environment/debugging-xv6.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-                    <a rel="next prefetch" href="introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../operating-system-interface.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -242,13 +224,13 @@
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 
