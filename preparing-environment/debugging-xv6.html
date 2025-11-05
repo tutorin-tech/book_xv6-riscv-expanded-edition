@@ -191,7 +191,7 @@
 git pull
 make docker-qemu-gdb
 </code></pre>
-<p>After that, you will see the prompt:</p>
+<p>After that, you will see the hint:</p>
 <blockquote>
 <p>*** Now run 'gdb' in another window.</p>
 </blockquote>
@@ -205,7 +205,7 @@ The target architecture is set to "riscv:rv64".
 0x0000000000001000 in ?? ()
 (gdb)
 </code></pre>
-<p>then everything is working correctly. The remote debugging stub in QEMU stops the virtual machine before the first instruction is executed after reset — at address <code>0x1000</code> in physical memory. As a result, if you switch back to the first terminal where you started xv6 in debug mode, you'll notice that nothing appears to be happening there yet.</p>
+<p>then everything is working correctly. The remote debugging stub in QEMU stops the emulator before the first instruction is executed after reset — at address <code>0x1000</code> in physical memory. As a result, if you switch back to the first terminal where you started xv6 in debug mode, you'll notice that nothing appears to be happening there yet.</p>
 <p>Return to the terminal where GDB is running. It should look familiar — much like a Bash shell — except that the prompt is <code>(gdb)</code> instead of <code>$</code>. The debugger is always in one of three states:</p>
 <ol>
 <li>the program being debugged is running;</li>
@@ -213,7 +213,7 @@ The target architecture is set to "riscv:rv64".
 <li>the program is not running.</li>
 </ol>
 <p>Most commands can be entered in the latter two states. Right now, the xv6 kernel is paused, and GDB is waiting for your command.</p>
-<p>I hope you've already used debuggers in various IDEs and that the term breakpoint is familiar to you. Let's set a breakpoint on the system call <code>kfork</code> (don't worry if the term "system call" doesn't mean much to you yet, or if <code>kfork</code> just looks like a random set of letters — we'll get to all of that soon). To do this, type <code>b kfork</code>, and then c to continue execution of the xv6 kernel.</p>
+<p>I hope you've already used debuggers in various IDEs and that the term breakpoint is familiar to you. Let's set a breakpoint on the system call <code>kfork</code> (don't worry if the term “system call” doesn't mean much to you yet, or if <code>kfork</code> just looks like a random set of letters — we'll get to all of that soon). To do this, type <code>b kfork</code>, and then c to continue execution of the xv6 kernel.</p>
 <p>Switch back to the first terminal where xv6 is running in debug mode, and you'll see that the operating system has started booting and then stopped at:</p>
 <pre><code class="language-bash">init: starting sh
 </code></pre>
