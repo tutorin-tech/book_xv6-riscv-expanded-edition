@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "format": "prettier . --single-quote --write",
+    "lint": "prettier . --single-quote --check"
+  },
+  "dependencies": {
+    "prettier": "^3.6.2"
+  }
+}
